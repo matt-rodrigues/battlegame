@@ -48,3 +48,35 @@ def is_valid_position(pos, size=10):
         return False
     return True
 
+# Create the boards for player and computer
+player_board = create_board(5, 10)
+computer_board = create_board(5, 10)
+hidden_computer_board = create_board(5, 10)
+
+# Place the ships for the player and computer
+for i in range(5):
+    player_valid = False
+    computer_valid = False
+
+    while not player_valid:
+        xy = input(f'Enter the position for your {i+1}• ship (A1 to E10): ').upper()
+        if is_valid_position(xy) and xy not in player_positions:
+            x = 'ABCDE'.index(xy[0])
+            y = int(xy[1]) - 1
+            player_board[x][y] = 1
+            player_positions.append(xy)
+            player_valid = True
+        else:
+            print("Invalid or occupied postion, try again.")
+    
+    while not computer_valid:
+        x = randint(0, 4)
+        y = randint(0, 4)
+        xy = f'{chr(x + ord("A"))}{y + 1}'
+        if xy not in computer_positions:
+            computer_board[x][y] = 1
+            computer_positions.append(xy)
+            computer_valid = True
+
+show_computer_board()
+show_player_board()

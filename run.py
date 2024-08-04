@@ -93,7 +93,7 @@ while True:
             if is_valid_position(attack_pos):
                 x = 'ABCDE'.index(attack_pos[0])
                 y = int(attack_pos[1]) - 1
-                if computer_board[x][y] = 1:
+                if computer_board[x][y] == 1:
                     hidden_computer_board[x][y] = 'x'
                     computer_score -= 1
                     print('You hit a ship!')

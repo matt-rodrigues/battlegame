@@ -26,4 +26,13 @@ def show_player_board():
     print("\nPlayer's Board")
     for row in range(5):
         print(player_board[row])
-    
+
+def show_computer_board():
+    """ 
+    Display the computer's board with hidden positons
+    """
+    print("\nComputer's Board")
+    for row in range(5):
+        print(hidden_computer_board[row])
+    print('------------------------------------')
+

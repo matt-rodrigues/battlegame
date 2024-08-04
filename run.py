@@ -36,3 +36,15 @@ def show_computer_board():
         print(hidden_computer_board[row])
     print('------------------------------------')
 
+def is_valid_position(pos, size=10):
+    """ 
+    Check if the given position is valid within the board size
+    """
+    if len(pos) != 2:
+        return False
+    if pos[0] not in 'ABCDE' or not pos[1].isdigit():
+        return False
+    if int(pos[1]) < 1 or int(pos[1]) > size:
+        return False
+    return True
+

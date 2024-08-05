@@ -6,13 +6,13 @@ from random import randint
 # Initialization of variables
 player_score = 5
 computer_score = 5
-turn = 5
-player_positions =[]
+turn = 0  # The turn should start from 0
+player_positions = []
 computer_positions = []
 
-def create_board(rows, colus):
+def create_board(rows, cols):
     """
-    Creating a game board with the given numbers of rows and columns
+    Create a game board with the given number of rows and columns.
     """
     board = []
     for i in range(rows):
@@ -21,7 +21,7 @@ def create_board(rows, colus):
 
 def show_player_board():
     """
-    Display the player's board
+    Display the player's board.
     """
     print("\nPlayer's Board")
     for row in range(5):
@@ -29,7 +29,7 @@ def show_player_board():
 
 def show_computer_board():
     """ 
-    Display the computer's board with hidden positons
+    Display the computer's board with hidden positions.
     """
     print("\nComputer's Board")
     for row in range(5):
@@ -38,7 +38,7 @@ def show_computer_board():
 
 def is_valid_position(pos, size=10):
     """ 
-    Check if the given position is valid within the board size
+    Check if the given position is valid within the board size.
     """
     if len(pos) != 2:
         return False
@@ -59,7 +59,7 @@ for i in range(5):
     computer_valid = False
 
     while not player_valid:
-        xy = input(f'Enter the position for your {i+1}• ship (A1 to E10): ').upper()
+        xy = input(f'Enter the position for your {i+1}º ship (A1 to E10): ').upper()
         if is_valid_position(xy) and xy not in player_positions:
             x = 'ABCDE'.index(xy[0])
             y = int(xy[1]) - 1
@@ -67,11 +67,11 @@ for i in range(5):
             player_positions.append(xy)
             player_valid = True
         else:
-            print("Invalid or occupied postion, try again.")
+            print("Invalid or occupied position, try again.")
     
     while not computer_valid:
         x = randint(0, 4)
-        y = randint(0, 4)
+        y = randint(0, 9)  # Correct range for the board
         xy = f'{chr(x + ord("A"))}{y + 1}'
         if xy not in computer_positions:
             computer_board[x][y] = 1
@@ -86,7 +86,7 @@ while True:
     if player_score == 0 or computer_score == 0:
         break
     else:
-        if turn % 2 == 0: #Player attacks
+        if turn % 2 == 0:  # Player attacks
             attack_pos = input(
                 'Enter the position you want to attack (A1 to E10): '
             ).upper()
@@ -102,9 +102,9 @@ while True:
                 turn += 1
             else:
                 print('Invalid position, try again.')
-        else: # Computer attacks
+        else:  # Computer attacks
             x = randint(0, 4)
-            y = randint(0, 4)
+            y = randint(0, 9)  # Correct range for the board
             attack_pos = f'{chr(x + ord("A"))}{y + 1}'
             if player_board[x][y] == 1:
                 player_board[x][y] = 'x'
@@ -116,10 +116,10 @@ while True:
         
         show_computer_board()
         show_player_board()
-        print("Player's Reamaing Ships:", player_score)
+        print("Player's Remaining Ships:", player_score)
         print("Computer's Remaining Ships:", computer_score)
     
 if player_score == 0:
     print("You lost, the computer destroyed all your ships.")
 else:
-    priint("Congratulations, you destroyed all the computer's ships.")
+    print("Congratulations, you destroyed all the computer's ships.")

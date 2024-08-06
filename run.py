@@ -133,3 +133,11 @@ def main_game_loop():
         print("You lost, the computer destroyed all your ships.")
     else:
         print("Congratulations, you destroyed all the computer's ships.")
+
+#Introduction
+print("Welcome to the Battleship Game!")
+print("You willl place 5 ships on a 5x5 board.")
+print("Each ship occupies one cel on the board.")
+print("You will take turns withe the computer to attack each other's ships.")
+print("The goal is to destroy all of the oppenent's ships.")
+

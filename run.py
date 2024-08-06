@@ -141,3 +141,11 @@ print("Each ship occupies one cel on the board.")
 print("You will take turns withe the computer to attack each other's ships.")
 print("The goal is to destroy all of the oppenent's ships.")
 
+# Get the player's name
+player_name = input("Please enter your name: ")
+
+# Board size
+board_size = 5
+
+# Setup boards with ships
+setup_boards()

@@ -2,6 +2,7 @@
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 from random import randint
+from colorama import Fore, Style, init 
 
 # Initialization of variables
 player_score = 5

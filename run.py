@@ -4,6 +4,9 @@
 from random import randint
 from colorama import Fore, Style, init 
 
+#Initialize colorama
+innit()
+
 # Initialization of variables
 player_score = 5
 computer_score = 5
@@ -11,13 +14,13 @@ turn = 0  # The turn should start from 0
 player_positions = []
 computer_positions = []
 
-def create_board(rows, cols):
+def create_board(size):
     """
     Create a game board with the given number of rows and columns.
     """
     board = []
-    for i in range(rows):
-        board.append(cols * [0])
+    for _ in range(size):
+        board.append([0] * size)
     return board
 
 def show_player_board():

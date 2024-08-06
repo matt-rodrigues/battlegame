@@ -86,45 +86,50 @@ def setup_boards():
                 computer_positions.append(xy)
                 computer_valid = True
 
-# Main game loop
-while True:
-    if player_score == 0 or computer_score == 0:
-        break
-    else:
-        if turn % 2 == 0:  # Player attacks
-            attack_pos = input(
-                'Enter the position you want to attack (A1 to E10): '
-            ).upper()
-            if is_valid_position(attack_pos):
-                x = 'ABCDE'.index(attack_pos[0])
-                y = int(attack_pos[1]) - 1
-                if computer_board[x][y] == 1:
-                    hidden_computer_board[x][y] = 'x'
-                    computer_score -= 1
-                    print('You hit a ship!')
+def main_game_loop():
+    """ 
+    Main game loop for the battleship game
+    """
+    global turn, player_score, computer_score
+
+    while True:
+        if player_score == 0 or computer_score == 0:
+            break
+        else:
+            if turn % 2 == 0:  # Player attacks
+                attack_pos = input(
+                    f'Enter the position you want to attack (A1 to E5), {player_name}: '
+                ).upper()
+                if is_valid_position(attack_pos, board_size):
+                    x = 'ABCDE'.index(attack_pos[0])
+                    y = int(attack_pos[1]) - 1
+                    if computer_board[x][y] == 1:
+                        hidden_computer_board[x][y] = 'X'
+                        computer_score -= 1
+                        print(Fore.GREEN + 'You hit a ship!' + Style.RESET_ALL)
+                    else:
+                        print(Fore.RED + 'You missed!' + Style.RESET_ALL)
+                    turn += 1
                 else:
-                    print('You missed!')
+                    print('Invalid position, try again.')
+            else:  # Computer attacks
+                x = randint(0, 4)
+                y = randint(0, 4)  # Correct range for the board
+                attack_pos = f'{chr(x + ord("A"))}{y + 1}'
+                if player_board[x][y] == 1:
+                    player_board[x][y] = 'X'
+                    player_score -= 1
+                    print(Fore.RED + f"The computer hit your ship at {attack_pos}!" +Style.RESET_ALL)
+                else:
+                    print(f"The computer missed at {attack_pos}!")
                 turn += 1
-            else:
-                print('Invalid position, try again.')
-        else:  # Computer attacks
-            x = randint(0, 4)
-            y = randint(0, 9)  # Correct range for the board
-            attack_pos = f'{chr(x + ord("A"))}{y + 1}'
-            if player_board[x][y] == 1:
-                player_board[x][y] = 'x'
-                player_score -= 1
-                print(f"The computer hit your ship at {attack_pos}!")
-            else:
-                print(f"The computer missed at {attack_pos}!")
-            turn += 1
         
-        show_computer_board()
-        show_player_board()
-        print("Player's Remaining Ships:", player_score)
-        print("Computer's Remaining Ships:", computer_score)
+            show_computer_board()
+            show_player_board()
+            print("Player's Remaining Ships:", player_score)
+            print("Computer's Remaining Ships:", computer_score)
     
-if player_score == 0:
-    print("You lost, the computer destroyed all your ships.")
-else:
-    print("Congratulations, you destroyed all the computer's ships.")
+    if player_score == 0:
+        print("You lost, the computer destroyed all your ships.")
+    else:
+        print("Congratulations, you destroyed all the computer's ships.")

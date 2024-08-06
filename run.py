@@ -149,3 +149,10 @@ board_size = 5
 
 # Setup boards with ships
 setup_boards()
+
+# Show inicial boards
+show_computer_board()
+show_player_board()
+
+# Start the main game loop
+main_game_loop()

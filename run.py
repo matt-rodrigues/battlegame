@@ -36,11 +36,11 @@ def show_computer_board():
     Display the computer's board with hidden positions.
     """
     print("\nComputer's Board")
-    for row in range(5):
-        print(hidden_computer_board[row])
+    for row in hidden_computer_board:
+        print(row)
     print('------------------------------------')
 
-def is_valid_position(pos, size=10):
+def is_valid_position(pos, size=5):
     """ 
     Check if the given position is valid within the board size.
     """
@@ -52,38 +52,39 @@ def is_valid_position(pos, size=10):
         return False
     return True
 
-# Create the boards for player and computer
-player_board = create_board(5, 10)
-computer_board = create_board(5, 10)
-hidden_computer_board = create_board(5, 10)
+def setup_boards():
+    """ 
+    Set up boards for the player and computer by placing ships.
+    """
+    global player_board, computer_board, hidden_computer_board
 
-# Place the ships for the player and computer
-for i in range(5):
-    player_valid = False
-    computer_valid = False
+    player_board = create_board(board_size)
+    computer_board = create_board(board_size)
+    hidden_computer_board = create_board(board_size)
 
-    while not player_valid:
-        xy = input(f'Enter the position for your {i+1}º ship (A1 to E10): ').upper()
-        if is_valid_position(xy) and xy not in player_positions:
-            x = 'ABCDE'.index(xy[0])
-            y = int(xy[1]) - 1
-            player_board[x][y] = 1
-            player_positions.append(xy)
-            player_valid = True
-        else:
-            print("Invalid or occupied position, try again.")
+    for i in range(5):
+        player_valid = False
+        computer_valid = False
+
+        while not player_valid:
+            xy = input(f'Enter the position for your {i+1}º ship (A1 to E5): ').upper()
+            if is_valid_position(xy, board_size) and xy not in player_positions:
+                x = 'ABCDE'.index(xy[0])
+                y = int(xy[1]) - 1
+                player_board[x][y] = 1
+                player_positions.append(xy)
+                player_valid = True
+            else:
+                print("Invalid or occupied position, try again.")
     
-    while not computer_valid:
-        x = randint(0, 4)
-        y = randint(0, 9)  # Correct range for the board
-        xy = f'{chr(x + ord("A"))}{y + 1}'
-        if xy not in computer_positions:
-            computer_board[x][y] = 1
-            computer_positions.append(xy)
-            computer_valid = True
-
-show_computer_board()
-show_player_board()
+        while not computer_valid:
+            x = randint(0, 4)
+            y = randint(0, 4) 
+            xy = f'{chr(x + ord("A"))}{y + 1}'
+            if xy not in computer_positions:
+                computer_board[x][y] = 1
+                computer_positions.append(xy)
+                computer_valid = True
 
 # Main game loop
 while True:

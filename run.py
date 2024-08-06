@@ -27,9 +27,9 @@ def show_player_board():
     """
     Display the player's board.
     """
-    print("\nPlayer's Board")
-    for row in range(5):
-        print(player_board[row])
+    print("\n{player_name}'s Board")
+    for row in player_board:
+        print(row)
 
 def show_computer_board():
     """ 

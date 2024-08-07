@@ -108,9 +108,9 @@ def main_game_loop():
                     if computer_board[x][y] == 1:
                         hidden_computer_board[x][y] = 'X'
                         computer_score -= 1
-                        print('You hit a ship!')
+                        print(Fore.GREEN + 'You hit a ship!' + Style.RESET_ALL)
                     else:
-                        print('You missed!')
+                        print(Fore.RED + 'You missed!' + Style.RESET_ALL)
                     turn += 1
                 else:
                     print('Invalid position, try again.')
@@ -121,7 +121,7 @@ def main_game_loop():
                 if player_board[x][y] == 1:
                     player_board[x][y] = 'X'
                     player_score -= 1
-                    print(f"The computer hit your ship at {attack_pos}!")
+                    print(Fore.RED + f"The computer hit your ship at {attack_pos}!" + Style.RESET_ALL)
                 else:
                     print(f"The computer missed at {attack_pos}!")
                 turn += 1

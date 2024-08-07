@@ -38,6 +38,24 @@ I have mannually tested this project by doing the following:
 
 - w3c - No errors were returned from validator.w3.org
 ![Validator](testing/w3c.png)
+
+## Deployment
+
+This project was deployed using Code Institute's mock terminal on Heroku
+
+- Stepss for deployment:
+    - Fork or conle this repository
+    - Create a new Heroku app
+    - Set the buildbacks to Python and NodeJS in that order
+    - Link the Heroku app to the repository
+    - Click on Deploy
+
+## Credits
+
+- Code writing by Matheus Rodrigues Vicente with the help of ChatGPT.
+- Code Institute for README and deployment terminal.
+- Wikipedia for details of the Battleship game.
+
 ---
 
 Happy coding!

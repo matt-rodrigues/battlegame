@@ -7,6 +7,7 @@ turn = 0  # The turn should start from 0
 player_positions = []
 computer_positions = []
 
+
 def create_board(size):
     """
     Create a game board with the given number of rows and columns.
@@ -16,6 +17,7 @@ def create_board(size):
         board.append([0] * size)
     return board
 
+
 def show_player_board():
     """
     Display the player's board.
@@ -24,8 +26,9 @@ def show_player_board():
     for row in player_board:
         print(row)
 
+
 def show_computer_board():
-    """ 
+    """
     Display the computer's board with hidden positions.
     """
     print("\nComputer's Board")
@@ -33,8 +36,9 @@ def show_computer_board():
         print(row)
     print('------------------------------------')
 
+
 def is_valid_position(pos, size=5):
-    """ 
+    """
     Check if the given position is valid within the board size.
     """
     if len(pos) != 2:
@@ -45,8 +49,9 @@ def is_valid_position(pos, size=5):
         return False
     return True
 
+
 def setup_boards():
-    """ 
+    """
     Set up boards for the player and computer by placing ships.
     """
     global player_board, computer_board, hidden_computer_board
@@ -69,18 +74,19 @@ def setup_boards():
                 player_valid = True
             else:
                 print("Invalid or occupied position, try again.")
-    
+
         while not computer_valid:
             x = randint(0, 4)
-            y = randint(0, 4) 
+            y = randint(0, 4)
             xy = f'{chr(x + ord("A"))}{y + 1}'
             if xy not in computer_positions:
                 computer_board[x][y] = 1
                 computer_positions.append(xy)
                 computer_valid = True
 
+
 def main_game_loop():
-    """ 
+    """
     Main game loop for the battleship game
     """
     global turn, player_score, computer_score
@@ -116,16 +122,17 @@ def main_game_loop():
                 else:
                     print(f"The computer missed at {attack_pos}!")
                 turn += 1
-        
+
             show_computer_board()
             show_player_board()
             print("Player's Remaining Ships:", player_score)
             print("Computer's Remaining Ships:", computer_score)
-    
+
     if player_score == 0:
         print("You lost, the computer destroyed all your ships.")
     else:
         print("Congratulations, you destroyed all the computer's ships.")
+
 
 # Introduction
 print("Welcome to the Battleship Game!")

@@ -100,8 +100,8 @@ def main_game_loop():
         else:
             if turn % 2 == 0:  # Player attacks
                 attack_pos = input(
-                    f'Enter the position you want to attack (A1 to E{board_size}), {player_name}: '
-                ).upper()
+                    Fore.YELLOW + f'Enter the position you want to attack (A1 to E{board_size}), {player_name}: ' +
+                Style.RESET_ALL).upper()
                 if is_valid_position(attack_pos, board_size):
                     x = 'ABCDE'.index(attack_pos[0])
                     y = int(attack_pos[1]) - 1
@@ -113,7 +113,7 @@ def main_game_loop():
                         print(Fore.RED + 'You missed!' + Style.RESET_ALL)
                     turn += 1
                 else:
-                    print('Invalid position, try again.')
+                    print(Fore.RED + 'Invalid position, try again.' + Style.RESET_ALL)
             else:  # Computer attacks
                 x = randint(0, 4)
                 y = randint(0, 4)  # Correct range for the board
@@ -128,8 +128,8 @@ def main_game_loop():
 
             show_computer_board()
             show_player_board()
-            print("Player's Remaining Ships:", player_score)
-            print("Computer's Remaining Ships:", computer_score)
+            print(Fore.MAGENTA + "Player's Remaining Ships:", player_score + Style.RESET_ALL)
+            print(Fore.BLUE + "Computer's Remaining Ships:", computer_score + Style.RESET_ALL)
 
     if player_score == 0:
         print("You lost, the computer destroyed all your ships.")

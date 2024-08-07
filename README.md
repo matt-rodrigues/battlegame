@@ -1,27 +1,21 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+## MattBattleship
 
-Welcome,
+Matt Battleship is a Python terminal game, which runs in the Code Institute mock terminal on Heroku
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 14, 2024**
+Users can try beat the computer by finding all of the computer's battleships before the computer finds theirs. Each battleship occupies one square on the board.
 
-## Reminders
+[View MattBattleship Website](https://mattbattleship-3c81ab239847.herokuapp.com/)
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+![MultiDevice Screen](testing/multidivice.png)
 
-## Creating the Heroku app
+## How to play
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+Welcome to the Battleship Game! The game is basead on the classic pen-and-paper game. You can read more about in on [Wikipedia](https://en.wikipedia.org/wiki/Battleship_(game)).
 
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
+- You will place 5 ships on a 5x5 board.
+- Each ship occupies one cell on the board.
+- You will take turns with the computer to attack each other's ships.
+- The goal is to destroy all of the opponent's ships.
 
 ## Constraints
 

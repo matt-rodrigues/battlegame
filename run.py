@@ -1,7 +1,7 @@
 from random import randint
 from colorama import Fore, Style, init
 
-init() 
+init()
 
 # Initialization of variables
 player_score = 5

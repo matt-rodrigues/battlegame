@@ -39,6 +39,9 @@ I have mannually tested this project by doing the following:
 - w3c - No errors were returned from validator.w3.org
 ![Validator](testing/w3c.png)
 
+- Lighthouse
+![Lighhouse](testing/lighthouse.png)
+
 ## Deployment
 
 This project was deployed using Code Institute's mock terminal on Heroku

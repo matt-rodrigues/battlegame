@@ -15,8 +15,6 @@ COMPUTER_GUESSES = []  # To track computer's guesses
 BOARD_SIZE = 5
 ROWS = 'ABCDE'
 
-# PEP8: Constants use uppercase, and line lengths are limited to 79 characters
-
 def create_board(size):
     """Create an empty game board."""
     return [['O'] * size for _ in range(size)]  # 'O' for unguessed positions
@@ -25,12 +23,26 @@ def create_board(size):
 def display_board(board, is_player=True):
     """
     Display the board with row and column labels.
-    is_player: If True, shows player's board; otherwise shows the computer's.
+    Modify the visualization to include color codes for hits and misses.
     """
     print("  1  2  3  4  5")
     for i, row in enumerate(board):
         row_label = ROWS[i]
-        print(f"{row_label} {'  '.join(row)}")
+        formatted_row = []
+        for cell in row:
+            if cell == 'O':  # Unattempted position
+                formatted_row.append(Fore.WHITE + cell + Style.RESET_ALL)
+            elif cell == 'S':  # Ship position (only for player)
+                if is_player:
+                    formatted_row.append(Fore.YELLOW + cell + Style.RESET_ALL)
+                else:
+                    formatted_row.append(Fore.WHITE + 'O' + Style.RESET_ALL)  # Hide ship
+            elif cell == 'X':  # Hit ship
+                formatted_row.append(Fore.RED + cell + Style.RESET_ALL)
+            elif cell == 'M':  # Missed attempt
+                formatted_row.append(Fore.BLUE + '0' + Style.RESET_ALL)  # Show '0' in blue for a miss
+        print(f"{row_label} {'  '.join(formatted_row)}")
+    print("-" * 30)  # Separator after board display
 
 
 def is_valid_position(pos, guesses, size=BOARD_SIZE):
@@ -154,9 +166,26 @@ def get_player_name():
 
 
 # Introduction and game setup
-print("Welcome to the Battleship Game!")
-print("You will place 5 ships on a 5x5 board.")
-print("Try to destroy all the computer's ships before it destroys yours.")
+def show_game_intro():
+    """Display an introduction explaining the game rules to the player."""
+    print(Fore.CYAN + "Welcome to Battleship!" + Style.RESET_ALL)
+    print(
+        "In this game, you will place 5 ships on a 5x5 grid.\n"
+        "Ships will be placed by entering positions like A1, B2, etc.\n"
+        "You will take turns with the computer, guessing the location of each other's ships.\n"
+        "Your objective is to destroy all of the computer's ships before it destroys yours.\n"
+        "On the board:\n"
+        "- 'S' represents a ship.\n"
+        "- 'O' represents an unguessed position.\n"
+        "- 'X' represents a hit ship.\n"
+        "- '0' in blue represents a missed shot.\n"
+        "Good luck!"
+    )
+    print("-" * 30)
+
+
+# Game setup and start
+show_game_intro()
 
 player_name = get_player_name()
 

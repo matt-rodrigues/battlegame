@@ -103,7 +103,7 @@ def maingame_loop(player_board, computer_board,
         if TURN % 2 == 0:  # Player's turn
             message = Fore.YELLOW
             message += f'{player_name} enter position to attack (A1 to E5): '
-            message += Style.(RESET_ALL)
+            message += Style.RESET_ALL
             attack_pos = input(message).upper()
             if is_valid_position(attack_pos, PLAYER_GUESSES):
                 PLAYER_GUESSES.append(attack_pos)
